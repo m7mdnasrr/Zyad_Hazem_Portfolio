@@ -172,21 +172,6 @@ nav {
   box-shadow: 0 32px 80px rgba(0,0,0,.45);
 }
 [data-theme="light"] .photo-frame { box-shadow: 0 32px 80px rgba(0,0,0,.12); }
-.photo-ph {
-  width: 100%; height: 100%;
-  background: linear-gradient(160deg, var(--surface2) 0%, var(--surface) 60%, var(--bg) 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
-}
-.ph-icon {
-  width: 88px; height: 88px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--teal));
-  display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
-}
-.ph-txt {
-  font-family: var(--ff-m); font-size: .7rem; text-transform: uppercase;
-  letter-spacing: .14em; color: var(--ink-3); text-align: center;
-  max-width: 190px; line-height: 1.7;
-}
 #heroImg {
   width: 100%; height: 100%; object-fit: cover; object-position: center top;
   display: none; position: absolute; inset: 0;
@@ -218,16 +203,6 @@ nav {
 }
 .photo-card::before { top: -8px; right: -8px; border-width: 2px 2px 0 0; border-radius: 0 var(--r) 0 0; }
 .photo-card::after { bottom: 22px; left: -8px; border-width: 0 0 2px 2px; border-radius: 0 0 0 var(--r); }
-.upload-wrap { margin-top: 1rem; text-align: center; }
-.upload-lbl {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-family: var(--ff-m); font-size: .68rem; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--ink-3); background: none;
-  border: 1px dashed var(--border); border-radius: 8px;
-  padding: .5rem 1rem; cursor: pointer;
-  transition: all var(--t) var(--ease);
-}
-.upload-lbl:hover { border-color: var(--gold); color: var(--gold); }
 
 /* stats */
 .stats {
@@ -461,7 +436,7 @@ footer span { color: var(--gold); }
 <nav>
   <div class="wrap nav-in">
     <div class="nav-brand" onclick="location.href='#about'">
-      <div class="nav-av" id="navAv">ZH<img id="navImg" src="" alt=""/></div>
+      <div class="nav-av" id="navAv"><img id="navImg" src="YOUR_PHOTO_URL_HERE.jpg" alt="ZH" style="display: block;"/></div>
       <span class="nav-nm">Zyad Hazem</span>
     </div>
     <ul class="nav-links">
@@ -513,11 +488,7 @@ footer span { color: var(--gold); }
 
       <div class="photo-card">
         <div class="photo-frame">
-          <div class="photo-ph" id="phPh">
-            <div class="ph-icon">👤</div>
-            <p class="ph-txt">Upload your photo below</p>
-          </div>
-          <img id="heroImg" src="" alt="Zyad Hazem"/>
+          <img id="heroImg" src="YOUR_PHOTO_URL_HERE.jpg" alt="Zyad Hazem" style="display: block;"/>
           <div class="photo-ov"></div>
         </div>
         <div class="photo-badge">
@@ -526,10 +497,6 @@ footer span { color: var(--gold); }
             <div class="b-lbl">Currently enrolled</div>
             <div class="b-val">Helwan University</div>
           </div>
-        </div>
-        <div class="upload-wrap">
-          <label for="photoIn" class="upload-lbl">📷 Upload your photo</label>
-          <input type="file" id="photoIn" accept="image/*" style="display:none"/>
         </div>
       </div>
     </div>
@@ -759,19 +726,6 @@ function cycleRole() {
 }
 re.style.transition = 'opacity .35s ease, transform .35s ease';
 setInterval(cycleRole, 3000);
-
-/* photo upload */
-const photoIn = document.getElementById('photoIn'),
-      heroImg = document.getElementById('heroImg'),
-      navImg = document.getElementById('navImg'),
-      phPh = document.getElementById('phPh');
-photoIn.addEventListener('change', e => {
-  const f = e.target.files[0]; if (!f) return;
-  const url = URL.createObjectURL(f);
-  heroImg.src = url; heroImg.style.display = 'block';
-  navImg.src = url; navImg.style.display = 'block';
-  phPh.style.display = 'none';
-});
 
 /* skill tabs */
 function showSk(id, btn) {
